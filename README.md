@@ -92,10 +92,12 @@ origin|allow_origin|allow_credentials[|endpoint]
 
 | Field | Meaning |
 |-------|---------|
-| `origin` | The `Origin` header you sent |
-| `allow_origin` | The `Access-Control-Allow-Origin` header you got back (empty if absent) |
-| `allow_credentials` | `true` or `false` |
+| `origin` | The serialized `Origin` header sent, such as `https://app.example.com`, or `null` |
+| `allow_origin` | The `Access-Control-Allow-Origin` value received (empty if absent) |
+| `allow_credentials` | `true` or `false` (required) |
 | `endpoint` | Optional URL, shown in the report |
+
+Origins must contain only a scheme, host, and optional port; paths, credentials, query strings, and fragments are invalid.
 
 Lines starting with `#` are comments. Malformed lines are reported on stderr with their line number and skipped.
 

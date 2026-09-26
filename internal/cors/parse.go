@@ -59,7 +59,7 @@ func Parse(r io.Reader) ([]Observation, []ParseError, error) {
 		switch strings.ToLower(parts[2]) {
 		case "true":
 			creds = true
-		case "false", "":
+		case "false":
 			creds = false
 		default:
 			errs = append(errs, ParseError{n, fmt.Sprintf("allow_credentials must be true or false, got %q", parts[2])})
@@ -175,6 +175,11 @@ func (t *TrustList) trustedOverHTTPS(origin string) bool {
 func normalizeOrigin(s string) (string, bool) {
 	u, err := url.Parse(strings.ToLower(strings.TrimSpace(s)))
 	if err != nil || (u.Scheme != "http" && u.Scheme != "https") || u.Host == "" {
+		return "", false
+	}
+	// Origin values contain only scheme, host, and optional port; paths,
+	// credentials, queries, and fragments are not part of an origin.
+	if u.User != nil || u.Opaque != "" || u.Path != "" || u.RawQuery != "" || u.Fragment != "" || u.ForceQuery || strings.Contains(s, "#") {
 		return "", false
 	}
 	port := u.Port()
