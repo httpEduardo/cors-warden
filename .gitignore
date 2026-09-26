@@ -1,2 +1,12 @@
+# Build output
+/bin/
+/dist/
 *.exe
+*.test
+*.out
+
+# Logs and local files
 *.log
+.DS_Store
+.idea/
+.vscode/

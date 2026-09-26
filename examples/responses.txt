@@ -1,0 +1,10 @@
+# origin sent | Access-Control-Allow-Origin received | Allow-Credentials | endpoint (optional)
+https://app.example.com|https://app.example.com|true|https://api.example.com/me
+https://evil.test|*|true|https://api.example.com/me
+https://portal.example.com|https://portal.example.com|false|https://api.example.com/catalog
+https://evil.test|https://evil.test|true|https://api.example.com/orders
+https://app.example.com|https://evil.test|true|https://api.example.com/legacy
+https://example.com.attacker.net|https://example.com.attacker.net|false|https://api.example.com/catalog
+null|null|true|https://api.example.com/export
+http://intranet.example.com|http://intranet.example.com|true|https://api.example.com/admin
+https://cdn.partner.io|*|false|https://static.example.com/fonts

@@ -1,5 +1,0 @@
-https://app.example.com|https://app.example.com|true
-https://evil.test|*|true
-https://portal.example.com|https://portal.example.com|false
-https://site.example.com|https://site.example.com|true
-https://app.example.com|https://evil.test|true
